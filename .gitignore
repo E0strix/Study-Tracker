@@ -1,1 +1,3 @@
 design.txt
+__pycache__/
+*.py[cod]
