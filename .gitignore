@@ -1,3 +1,5 @@
 design.txt
 __pycache__/
 *.py[cod]
+scratch.py
+data/subjects.json
