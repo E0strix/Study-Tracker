@@ -60,32 +60,5 @@ def subject_entry():
 
 
 
-
-
-
-# def subject_entry():
-#       
-
-#     for x in range (1, subject_count + 1): # For no. of subjects, entering the subjects
-#         subject = input(f"\nEnter the subject {x}(Enter q to exit): ")
-        
-#         if subject in ["q", "Q"]:
-#             break   
-
-#         result = data_entry.add_subject(subject)
-
-#         if result == "Duplicate detected! Try Again":
-#             subject_entry()
-#             break
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":  
     main()
