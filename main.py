@@ -1,15 +1,20 @@
-# from modules.add_subject import add_subject
+from modules import data_entry
 
-def main():
+
+
+def main(): #menu
     print("Hello, welcome to student tracker 9000")
     while True:
         print("\n------------------------")
         print("Choose an option")
         print("------------------------")
         print("\n1- Add subjects (max. 12)")
+        print("Enter q to exit")
         op = input("Choose from the options above: ")
 
-        if op == "1":
+        if op.strip().lower() == "q":
+            return
+        elif op == "1":
             subject_entry()
             break 
         elif op == "2":
@@ -34,12 +39,53 @@ def subject_entry():
         except ValueError:
             print("Incorrect! Please enter a number")   
 
-    for x in range (1, subject_count + 1):
-            subject = input(f"\nEnter the subject {x}: ")
+    count = 0
+    while True:
+        if count < subject_count: 
+            subject = input(f"\nEnter the subject {count + 1}. (Enter q to exit): ")
+
+            if subject.strip().lower() == "q":
+                break
+
+            result = data_entry.add_subject(subject)
+
+            if result:
+                print("Duplicate detected! Try again")
+            else:
+                count += 1
+        else: 
+            break
+    
+
+
+
+
+
+
+
+# def subject_entry():
+#       
+
+#     for x in range (1, subject_count + 1): # For no. of subjects, entering the subjects
+#         subject = input(f"\nEnter the subject {x}(Enter q to exit): ")
         
-        
+#         if subject in ["q", "Q"]:
+#             break   
+
+#         result = data_entry.add_subject(subject)
+
+#         if result == "Duplicate detected! Try Again":
+#             subject_entry()
+#             break
 
 
 
 
-main()
+
+
+
+
+
+
+if __name__ == "__main__":  
+    main()
