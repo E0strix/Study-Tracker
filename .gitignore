@@ -3,3 +3,4 @@ __pycache__/
 *.py[cod]
 scratch.py
 data/subjects.json
+data/credentials.json

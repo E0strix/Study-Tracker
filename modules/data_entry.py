@@ -6,17 +6,15 @@ OUTPUT_FILE = "data/subjects.json"
 
 
 def add_subject(subject):
-
-    if Path(OUTPUT_FILE).exists():
+    try:
         with open (OUTPUT_FILE, "r") as file:
             content = json.load(file)
-    else:     
-        content = []
-
+    except (json.decoder.JSONDecodeError, FileNotFoundError): 
+        content= []
+    
     if content:
         if subject in content:
-            return "Duplicate detected! Try Again"
-
+            return True
 
         content.append(subject)
         with open(OUTPUT_FILE, "w") as file:
