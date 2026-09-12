@@ -27,22 +27,28 @@ def login():
     global STUDENT_ID
 
     while True:
-        try:
-            student_id = int(input("Enter student ID: S-"))
+        print("\nEnter student ID (Enter q to to return)")
+        student_id = input("Enter student ID: S-")
 
-            if str(student_id).count("4") == 4:
-                result = id_checker.check_id(id)
+        if student_id.strip().isdigit() and len(student_id.strip()) == 4:
+            result = id_checker.check_id(student_id)
 
-                # Assign  input id to global variable
-                if result: 
-                    STUDENT_ID = student_id
-                    print("Logged in")
-                    menu()
-                    break
+            # Check if login credentials match
+            if result: 
+                STUDENT_ID = student_id
+                print(f"\nLogged in as S-{STUDENT_ID}")
+                menu()
+                break
+            else: 
+                print("Login not detected")
 
+        elif student_id.strip().lower() == "q":
+            welcome()
+            break
 
-        except ValueError:
-            print("Enter integer values")
+        else:
+            print("Error! Enter correct values")
+
         
 
 
