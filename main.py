@@ -1,4 +1,4 @@
-from modules import data_entry
+from modules import data_entry, id_checker 
 
 STUDENT_ID = 0000
 
@@ -24,8 +24,26 @@ def welcome(): # prompt user to login/sign up
 
 
 def login():
-    pass
+    global STUDENT_ID
 
+    while True:
+        try:
+            student_id = int(input("Enter student ID: S-"))
+
+            if str(student_id).count("4") == 4:
+                result = id_checker.check_id(id)
+
+                # Assign  input id to global variable
+                if result: 
+                    STUDENT_ID = student_id
+                    print("Logged in")
+                    menu()
+                    break
+
+
+        except ValueError:
+            print("Enter integer values")
+        
 
 
 def sign_up():

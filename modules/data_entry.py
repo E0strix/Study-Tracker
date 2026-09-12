@@ -13,7 +13,7 @@ def add_subject(subject):
         content= []
     
     if content:
-        if subject in content:
+        if subject in content: # True when subject is duplicated
             return True
 
         content.append(subject)
