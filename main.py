@@ -1,4 +1,4 @@
-from modules import data_entry, id_checker 
+from modules import data_entry, id_config
 
 STUDENT_ID = 0000
 
@@ -30,26 +30,24 @@ def login():
         print("\nEnter student ID (Enter q to to return)")
         student_id = input("Enter student ID: S-")
 
-        if student_id.strip().isdigit() and len(student_id.strip()) == 4:
-            result = id_checker.check_id(student_id)
+        print("\nEnter password (Enter q to to return)")
+        student_pass = input("Password: ")
 
-            # Check if login credentials match
-            if result: 
-                STUDENT_ID = student_id
-                print(f"\nLogged in as S-{STUDENT_ID}")
-                menu()
-                break
-            else: 
-                print("Login not detected")
-
-        elif student_id.strip().lower() == "q":
+        if student_id.strip().lower() == "q" or student_pass.strip().lower() == "q":
             welcome()
             break
 
-        else:
-            print("Error! Enter correct values")
+        success, message = id_config.check_id(student_id, student_pass)
 
-        
+        if not success:
+            print(message)
+
+        elif success: 
+            STUDENT_ID = student_id
+            print("\nSuccess!")
+            print(message)
+            break
+
 
 
 def sign_up():
