@@ -16,3 +16,9 @@ def check_id(student_id, student_pass):
             json.dump(content, file)
 
         return False, "No users exist! Create one"
+
+    for value in content:
+        if value["id"] == student_id and value["password"] == student_pass:
+            return True, f"Logging in as {student_id}"
+
+    return False, "Student ID or password is incorrect"
