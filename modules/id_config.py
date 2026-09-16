@@ -1,5 +1,4 @@
 import json 
-from pathlib import Path
 
 TARGET = "../data/student.json"
 
