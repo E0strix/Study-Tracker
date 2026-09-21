@@ -30,12 +30,12 @@ def login():
         print("\nEnter student ID (Enter q to to return)")
         student_id = input("Enter student ID: S-")
 
-        print("\nEnter password (Enter q to to return)")
-        student_pass = input("Password: ")
-
-        if student_id.strip().lower() == "q" or student_pass.strip().lower() == "q":
+        if student_id.strip().lower() == "q":
             welcome()
             break
+
+        print("\nEnter password")
+        student_pass = input("Password: ")
 
         success, message = id_config.check_id(student_id, student_pass)
 
