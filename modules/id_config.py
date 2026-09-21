@@ -1,6 +1,6 @@
 import json 
 
-TARGET = "../data/student.json"
+TARGET = "data/credentials.json"
 
 
 
@@ -14,10 +14,10 @@ def check_id(student_id, student_pass):
         with open (TARGET, "w") as file:
             json.dump(content, file)
 
-        return False, "No users exist! Create one"
+        return False, "\nNo users exist! Create one"
 
     for value in content:
         if value["id"] == student_id and value["password"] == student_pass:
             return True, f"Logging in as {student_id}"
 
-    return False, "Student ID or password is incorrect"
+    return False, "\nStudent ID or password is incorrect"

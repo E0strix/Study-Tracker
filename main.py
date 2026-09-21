@@ -3,7 +3,6 @@ from modules import data_entry, id_config
 STUDENT_ID = 0000
 
 def welcome(): # prompt user to login/sign up
-    print("Hello, welcome to student tracker 9000")
     while True:
         print("\n1- Login")
         print("2- Sign up")
@@ -116,7 +115,7 @@ def remove_subject():
     pass
 
 
-
+print("\nHello, welcome to student tracker 9000")
 
 
 if __name__ == "__main__":  
