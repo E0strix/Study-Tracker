@@ -21,3 +21,8 @@ def check_id(student_id, student_pass):
             return True, f"Logging in as {student_id}"
 
     return False, "\nStudent ID or password is incorrect"
+
+
+
+def sign_in():
+    pass
