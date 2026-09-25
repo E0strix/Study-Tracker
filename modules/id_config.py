@@ -24,5 +24,5 @@ def check_id(student_id, student_pass):
 
 
 
-def sign_in():
+def sign_up():
     pass
