@@ -50,7 +50,21 @@ def login():
 
 
 def sign_up():
-    pass
+    global STUDENT_ID
+    
+    while True:
+        student_pass = ("\nEnter a password: ")
+
+        success, message, student_id = id_config.id_creation(student_pass)
+
+        if not success:
+            print(message)
+
+        elif success: 
+            STUDENT_ID = student_id
+            print("\nSuccess!")
+            print(message)
+            break
 
 
 
