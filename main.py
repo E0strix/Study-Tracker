@@ -53,9 +53,9 @@ def sign_up():
     global STUDENT_ID
 
     while True:
-        print("\nYour password should be longer than 8 characters and no longer than 12")
+        print("\nYour password should be atleast 8 characters and no longer than 12")
         print("Your password should contain atleast one number")
-        print("Your password should contain atleast one symbol")
+        print("Your password should contain atleast one these symbol (!, @, #, $, %, &)")
         student_pass = input("\nEnter a password: ")
 
         success, message, student_id = id_config.id_creation(student_pass)
