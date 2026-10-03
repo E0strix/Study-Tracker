@@ -1,4 +1,4 @@
-from modules import data_entry, id_config
+from modules import id_config
 
 STUDENT_ID = "0000"
 
@@ -13,13 +13,13 @@ def welcome(): # prompt user to login/sign up
             return
         elif op == "1":
             login()
-            break 
+            break
         elif op == "2":
             sign_up()
             break
         else:
             print("Incorrect! Please enter correct option!")
-            
+
 
 
 def login():
@@ -41,7 +41,7 @@ def login():
         if not success:
             print(message)
 
-        elif success: 
+        elif success:
             STUDENT_ID = student_id
             print("\nSuccess!")
             print(message)
@@ -64,7 +64,7 @@ def sign_up():
         if not success:
             print(message)
 
-        elif success: 
+        elif success:
             STUDENT_ID = student_id
             print("\nSuccess!")
             print(message)
@@ -97,36 +97,8 @@ def subject_configuration():
 
 
 def add_subject():
-    while True:  # No. of subjects checker
-        try:
-            subject_count = int(input("\nEnter no. subjects studying: "))
+    pass
 
-            if subject_count > 12:
-                print("No. of subjects should be 12 or less")
-            elif subject_count < 1:
-                print("You must enter at least 1 subject")
-            else:
-                break
-        except ValueError:
-            print("Incorrect! Please enter a number")   
-
-    count = 0
-    while True: # prompt to enter subject
-        if count < subject_count: 
-            subject = input(f"\nEnter the subject {count + 1}. (Enter q to exit): ")
-
-            if subject.strip().lower() == "q":
-                break
-
-            result = data_entry.add_subject(subject)
-
-            if result:
-                print("Duplicate detected! Try again")
-            else:
-                count += 1
-        else: 
-            break
-    
 
 
 def remove_subject():
@@ -136,5 +108,5 @@ def remove_subject():
 print("\nHello, welcome to student tracker 9000")
 
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     welcome()
