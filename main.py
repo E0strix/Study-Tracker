@@ -27,6 +27,7 @@ def login():
 
     while True:
         print("\nEnter student ID (Enter q to to return)")
+        print("Enter any leading zeros (e.g. 0001)")
         student_id = input("Enter student ID: S-")
 
         if student_id.strip().lower() == "q":
@@ -45,6 +46,7 @@ def login():
             STUDENT_ID = student_id
             print("\nSuccess!")
             print(message)
+            menu()
             break
 
 
@@ -68,26 +70,13 @@ def sign_up():
             STUDENT_ID = student_id
             print("\nSuccess!")
             print(message)
+            menu()
             break
 
 
 
 def menu(): # main menu
-    while True:
-        print("\n------------------------")
-        print("Main menu")
-        print("------------------------")
-        print("1- Subjects configurations")
-        print("Enter q to exit")
-        op = input("Choose from the options above: ")
-
-        if op.strip().lower() == "q":
-            return
-        elif op.strip().lower() == "1":
-            add_subject()
-            break
-        else:
-            print("Incorrect! Please enter correct option!")
+    pass
 
 
 
