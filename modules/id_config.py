@@ -10,18 +10,18 @@ def check_id(student_id, student_pass):
         with open(TARGET, "r") as file:
             content = json.load(file)
     except (json.decoder.JSONDecodeError, FileNotFoundError):
-        content = []
-
+        content = {}
         with open (TARGET, "w") as file:
-            json.dump(content, file)
-
+            json.dump(content, file, indent = 4)
         return False, "\nNo users exist! Create one"
 
-    for value in content:
-        if value["id"] == student_id and value["password"] == student_pass:
+    if student_id in content:
+        if content[student_id] == student_pass:
             return True, f"Logging in as S-{student_id}"
-
-    return False, "\nStudent ID or password is incorrect"
+        else:
+            return False, "\nIncorrect password!"
+    else:
+        return False, "Incorrect student id!"
 
 
 
@@ -41,10 +41,9 @@ def id_creation(student_pass):
         with open(TARGET, "r") as file:
             content = json.load(file)
     except (json.decoder.JSONDecodeError, FileNotFoundError):
-        content = [] # prep the json file when json doesnt exist
-
+        content = {} # create json file when json doesnt exist
         with open (TARGET, "w") as file:
-            json.dump(content, file)
+            json.dump(content, file, indent = 4)
 
 
     # Telemetry json check
@@ -52,54 +51,27 @@ def id_creation(student_pass):
         with open(TARGET_2, "r") as file:
             content_2 = json.load(file)
 
-        num = int(content_2["student_no"])
+        num = int(content_2["student_no"]) # count updated
         num += 1
+        leading_num = str(num).zfill(4)
+        content_2["student_no"] = leading_num
 
-        content_2["student_no"] = str(num).zfill(4)
+        with open(TARGET_2, "w") as file: # Updating telemetry json with new no of student
+            json.dump(content_2, file, indent = 4)
 
-        with open(TARGET_2, "a") as file: # Updating telemetry json with new no of student
-            json.dump(content_2, file)
-
-        content.append({str(num).zfill(4) : student_pass})
-
-        with open(TARGET, "a") as file: # Updating credentials json with new user details
-            json.dump(content, file)
-
-        return True, f"Your Student number is {str(num).zfill(4)}", str(num).zfill(4)
+        content[leading_num] = student_pass
+        with open(TARGET, "w") as file: # Updating credentials json with new user details
+            json.dump(content, file, indent = 4)
+        return True, f"Your Student number is {leading_num}", leading_num
 
     except (json.decoder.JSONDecodeError, FileNotFoundError): #if telemetry json doesnt exist
-        content_2 = []
-        content_2.append({"student_no" : 1})
+        content_2 = {}
+        content_2["student_no"] = "0001"
+        with open(TARGET_2, "w") as file: # Creating the first count, creation of first user
+            json.dump(content_2, file, indent = 4)
 
-        with open(TARGET_2, "w") as file: # Writing to telemetry json
-            json.dump(content_2, file)
-
-        num = 1
-        content.append({str(num).zfill(4) : student_pass}) # Writing to credentials json
-
+        content["0001"] = student_pass # Writing to credentials json, creation of first user
         with open(TARGET, "w") as file:
-            json.dump(content, file)
+            json.dump(content, file, indent = 4)
 
-        return True, f"Your Student number is {str(num).zfill(4)}", str(num).zfill(4)
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# with open(TARGET_2, "w") as file:
-#     content_2 = {"student_no" : 1}
-#     json.dump(content_2, file)
-#
-#
-#
-# with open(TARGET, "a") as file:
-#     content = {"id" : student_pass}
-#     json.dump(content, file)
+        return True, "Your Student number is 0001", "0001"
